@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+    <script src="getDataService.js"></script>
+    <script src="getModelsForMakeIdService.js"></script>
+    
+    <body>
+
+        <div class="container">
+
+            <div ng-app="myApp" ng-controller="carsCtrl"> 
+
+                <form class="form-horizontal" ng-submit="submitSearch(myForm.$valid)" name="myForm" novalidate>
+
+                    <div  id="topPart" class="form-group">
+
+                        <div class="col-xs-10 col-xs-offset-1 text-danger text-center">
+                               
+                               
+                        </div>
+                        
+                           <br/>
+
+                        <div class="col-md-3 col-md-offset-1">
+                          <label id="year">Enter the year: </label>
+                          <input type="number" class="form-control" ng-model="modelyear" ng-minlength="4" ng-maxlength="4" required>
+                          <br/>
+                          <input type="submit" value="Get Manufacturers!" class="btn btn-primary btn-block">
+                          <br   />
+                          <strong><h3>{{ searchHeader }}</h3> </strong> 
+                                <br/>
+                        </div>
+
+
+
+                    </div>
+                    
+                    <div class="col-xs-12">
+                        
+                        <div class="col-xs-3 form-group">
+                            <input type='checkbox' value='' ng-model='checkall' ng-click="updateSelection($event, 'checkall')">Check/Uncheck All<br/>
+                            <div class="col-xs-12" ng-repeat="name in fullNameList">
+                                <input type="checkbox" class="checkBoxes" name="{{ name }}" value="{{ name }}" ng-checked="checkall" ng-click="updateSelection($event, name)">{{ name }}<br/>
+                            </div>
+                        </div>
+                        
+
+                        
+                        <div class="col-xs-5 col-xs-offset-1">
+<!--
+                            <strong><h3>{{ searchHeader }}</h3> </strong> 
+                                <br/>
+-->
+                            <strong><h4 class="text-success">{{ display }} {{ filtered.length }}</h4></strong>
+                               <br/>
+                            <label for="filter">Filter results</label>
+                            <input type="text" name="filter" class="form-control" ng-model="textFilter">
+                            <div class=".col-xs-12.list-group-item" ng-repeat="car in myData | filter: { MakeName: textFilter } as filtered">
+                                <h4>
+                                    <input type='button' id='makeName' value='{{ car.MakeName }}' ng-click="displayModels($event, car.MakeId)"><br/>
+                                    <h5>Make Id:<span ng-model="searchMakeId"> {{  car.MakeId }}</span></h5>
+                                    <h5>Mfr Id: {{  car.MfrId }}</h5>
+                                    <h5>Mfr Name: {{  car.MfrName }}</h5>
+                                </h4>
+                                <hr/>
+                                <br/>
+                             </div>
+                        </div>
+                        
+                        <div class="col-xs-offset-1 col-xs-2">
+                            <strong><h5 class="col-xs-12 text-success">{{ display2 }} {{ filteredModels.length }}</h5></strong><br/>
+                            <strong><h5 class="col-xs-12 text-info">{{ display2MakeName }}</h5></strong><br/>
+                            <strong><h5 class="col-xs-12 text-info">{{ display2MakeId }}</h5></strong><br/>
+                            <label for="filterModels">Filter Models</label>
+                            <input type="text" name="filterModels" class="form-control" ng-model="ModelsFilter">
+                            <div class=".col-xs-12.list-group-item" ng-repeat="model in getModels | filter: { Model_Name: ModelsFilter } as filteredModels">
+                                <h4>
+                                    <h5>Model Name: {{  model.Model_Name }}</h5>
+                                    <h5>Model Id:{{  model.Model_ID }}</h5>                       
+                                </h4>
+                                <hr/>
+                                <br/>
+                             </div>
+                        </div>
+                    
+                    </div>
+
+                    
+                </form>
+
+            </div>
+
+        </div>
+    </body>
+</html>

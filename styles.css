@@ -1,0 +1,21 @@
+#makeName{
+    padding: 0;
+    border: :none;
+    background: none;
+    color: blue;
+    outline: none;
+}
+
+#topPart{
+    background-image: url(images/header.jpg);
+/*    background-repeat: no-repeat;*/
+    
+}
+
+#year{
+    color: azure;
+}
+
+body{
+    background-color: blanchedalmond;
+}
