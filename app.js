@@ -89,11 +89,11 @@ var carsCtrl = function($scope, getDataService, getModelsForMakeIdService) {
         }
 
         if (isValid){
-             $scope.display = "Please wait....loading data....";
+             $scope.display1 = "Please wait....loading data....";
             getDataService.getData($scope.modelyear)
                
                 .success(function(data){
-                    
+                    $scope.display1 = "";
                     $scope.hiders = true;
                    
                     $scope.tempData = data.Results;
