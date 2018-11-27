@@ -124,7 +124,7 @@ var carsCtrl = function($scope, getDataService, getModelsForMakeIdService) {
             
         }
         else{
-          $scope.display = "Invalid year entered. Enter a year from 1980 to the current year";
+          $scope.display1 = "Invalid year entered. Enter a year from 1980 to the current year";
         }
     };
 }
