@@ -4,7 +4,7 @@ angular.module('myApp', []);
 
 var carsCtrl = function($scope, getDataService, getModelsForMakeIdService) {
     
-  
+  $scope.hiders = false;
     $scope.displayModels = function($event, make_id) {
         $scope.display2MakeName = "Please wait....loading models....";
         getModelsForMakeIdService.getModelsData(make_id)
@@ -94,7 +94,7 @@ var carsCtrl = function($scope, getDataService, getModelsForMakeIdService) {
                
                 .success(function(data){
                     
-                    
+                    $scope.hiders = true;
                    
                     $scope.tempData = data.Results;
                     $scope.myData = $scope.tempData;

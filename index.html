@@ -45,8 +45,8 @@
                     
                     <div class="col-xs-12">
                         
-                        <div class="col-xs-3 form-group">
-                            <input type='checkbox' value='' ng-model='checkall' ng-click="updateSelection($event, 'checkall')">Check/Uncheck All<br/>
+                        <div class="col-xs-3 form-group" ng-show="hiders">
+                            <input type='checkbox' value='' ng-model='checkall' ng-click="updateSelection($event, 'checkall')">All<br/>
                             <div class="col-xs-12" ng-repeat="name in fullNameList">
                                 <input type="checkbox" class="checkBoxes" name="{{ name }}" value="{{ name }}" ng-checked="checkall" ng-click="updateSelection($event, name)">{{ name }}<br/>
                             </div>
@@ -54,7 +54,7 @@
                         
 
                         
-                        <div class="col-xs-5 col-xs-offset-1">
+                        <div class="col-xs-4 col-xs-offset-1"  ng-show="hiders">
 <!--
                             <strong><h3>{{ searchHeader }}</h3> </strong> 
                                 <br/>
@@ -75,7 +75,7 @@
                              </div>
                         </div>
                         
-                        <div class="col-xs-offset-1 col-xs-2">
+                        <div class="col-xs-offset-2 col-xs-2"  ng-show="hiders">
                             <strong><h5 class="col-xs-12 text-success">{{ display2 }} {{ filteredModels.length }}</h5></strong><br/>
                             <strong><h5 class="col-xs-12 text-info">{{ display2MakeName }}</h5></strong><br/>
                             <strong><h5 class="col-xs-12 text-info">{{ display2MakeId }}</h5></strong><br/>
